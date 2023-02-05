@@ -58,6 +58,7 @@ public class JpaVisitRepositoryImpl implements VisitRepository {
     }
 
 
+//    Obtener todas las visitas para una mascota
     @Override
     @SuppressWarnings("unchecked")
     public List<Visit> findByPetId(Integer petId) {
