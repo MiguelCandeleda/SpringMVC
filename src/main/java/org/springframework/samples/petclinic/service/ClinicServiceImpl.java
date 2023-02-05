@@ -120,6 +120,20 @@ public class ClinicServiceImpl implements ClinicService {
 		return vet;
 	}
 
+    @Override
+    @Transactional(readOnly = true)
+    public Vet findVetByLastName(int id) throws DataAccessException {
+        Vet vet = null;
+        try {
+            vet = vetRepository.findById(id);
+        } catch (ObjectRetrievalFailureException|EmptyResultDataAccessException e) {
+            // just ignore not found exceptions for Jdbc/Jpa realization
+            return null;
+        }
+        return vet;
+    }
+
+
 	@Override
 	@Transactional(readOnly = true)
 	public Collection<Vet> findAllVets() throws DataAccessException {
@@ -277,6 +291,21 @@ public class ClinicServiceImpl implements ClinicService {
 	public Collection<Owner> findOwnerByLastName(String lastName) throws DataAccessException {
 		return ownerRepository.findByLastName(lastName);
 	}
+
+
+    @Override
+    @Transactional(readOnly = true)
+    public Collection<Vet> findVetByLastName(String lastName) throws DataAccessException {
+        return VetRepository.findVetByLastName(lastName);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Collection<Vet> findVetByFirstNameLastName(String firstName,String lastName) throws DataAccessException {
+        return VetRepository.findVetByFirstNameLastName(firstName,lastName);
+    }
+
+
 
 	@Override
 	@Transactional(readOnly = true)

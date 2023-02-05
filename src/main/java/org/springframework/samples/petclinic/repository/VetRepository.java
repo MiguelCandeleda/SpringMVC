@@ -38,11 +38,15 @@ public interface VetRepository {
      * @return a <code>Collection</code> of <code>Vet</code>s
      */
     Collection<Vet> findAll() throws DataAccessException;
-    
+
 	Vet findById(int id) throws DataAccessException;
 
+    Vet findVetByLastName(String lastName) throws DataAccessException;
+
+    Vet findVetByFirstNameLastName(String firstName,String lastName) throws DataAccessException;
+
 	void save(Vet vet) throws DataAccessException;
-	
+
 	void delete(Vet vet) throws DataAccessException;
 
 

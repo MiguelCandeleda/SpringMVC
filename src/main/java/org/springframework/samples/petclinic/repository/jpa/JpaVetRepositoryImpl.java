@@ -23,7 +23,9 @@ import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import java.util.Collection;
+import java.util.List;
 
 /**
  * JPA implementation of the {@link VetRepository} interface.
@@ -41,7 +43,7 @@ public class JpaVetRepositoryImpl implements VetRepository {
     @PersistenceContext
     private EntityManager em;
 
-   
+
 	@Override
 	public Vet findById(int id) throws DataAccessException {
 		return this.em.find(Vet.class, id);
@@ -66,6 +68,23 @@ public class JpaVetRepositoryImpl implements VetRepository {
 	public void delete(Vet vet) throws DataAccessException {
 		this.em.remove(this.em.contains(vet) ? vet : this.em.merge(vet));
 	}
+
+//    Lista Vets filtrados por lastName
+    public List findVetByLastName (String lastName) {
+
+        Query query = this.em.createQuery("SELECT last_name FROM Vets");
+        query.setParameter("lastName", lastName + "%");
+        return query.getResultList();
+    }
+
+    public List findVetByFirstNameLastName (String firstName,String lastName) {
+
+        Query query = this.em.createQuery("SELECT first_name, last_name FROM Vets");
+        query.setParameter("firstName", firstName + "%");
+        query.setParameter("lastName", lastName + "%");
+        return query.getResultList();
+    }
+
 
 
 }

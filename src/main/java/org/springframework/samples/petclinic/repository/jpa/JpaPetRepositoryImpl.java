@@ -47,7 +47,8 @@ public class JpaPetRepositoryImpl implements PetRepository {
     @Override
     @SuppressWarnings("unchecked")
     public List<PetType> findPetTypes() {
-        return this.em.createQuery("SELECT ptype FROM PetType ptype ORDER BY ptype.name").getResultList();
+        String sql = "SELECT ptype FROM PetType ptype ORDER BY ptype.name";
+        return this.em.createQuery(sql).getResultList();
     }
 
     @Override
@@ -63,12 +64,18 @@ public class JpaPetRepositoryImpl implements PetRepository {
             this.em.merge(pet);
         }
     }
-    
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public Collection<Pet> findAll() throws DataAccessException {
 		return this.em.createQuery("SELECT pet FROM Pet pet").getResultList();
 	}
+
+    @Override
+    public Collection<Pet> findAll() throws DataAccessException {
+        return this.em.createQuery("SELECT pet FROM Pet pet").getResultList();
+    }
+
 
 	@Override
 	public void delete(Pet pet) throws DataAccessException {
