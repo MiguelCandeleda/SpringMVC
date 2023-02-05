@@ -51,7 +51,7 @@ public class SwaggerConfig {
         Contact petclinicContact = new Contact();
         petclinicContact.setName("Miguel Acosta");
         petclinicContact.setEmail("miguel86acosta@gmail.com");
-        petclinicContact.setUrl("https://github.com/MiguelCandeleda/springMVC.git");
+        petclinicContact.setUrl("https://github.com/MiguelCandeleda/SpringMVC.git");
         return petclinicContact;
     }
 
