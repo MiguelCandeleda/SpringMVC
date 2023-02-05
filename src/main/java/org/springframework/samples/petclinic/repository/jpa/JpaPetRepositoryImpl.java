@@ -52,6 +52,13 @@ public class JpaPetRepositoryImpl implements PetRepository {
     }
 
     @Override
+    @SuppressWarnings("unchecked")
+    public List<PetType> findPetAge() {
+        String sql = "SELECT * FROM Pets WHERE birth_date = '2010' ORDER BY birth_date ASC";
+        return this.em.createQuery(sql).getResultList();
+    }
+
+    @Override
     public Pet findById(int id) {
         return this.em.find(Pet.class, id);
     }

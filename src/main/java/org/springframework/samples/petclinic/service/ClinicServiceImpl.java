@@ -101,6 +101,12 @@ public class ClinicServiceImpl implements ClinicService {
 		return visitRepository.findAll();
 	}
 
+    @Override
+    @Transactional(readOnly = true)
+    public Collection<Visit> find4() throws DataAccessException {
+        return visitRepository.findAll();
+    }
+
 	@Override
 	@Transactional
 	public void deleteVisit(Visit visit) throws DataAccessException {
@@ -231,6 +237,12 @@ public class ClinicServiceImpl implements ClinicService {
 	public Collection<PetType> findPetTypes() throws DataAccessException {
 		return petRepository.findPetTypes();
 	}
+
+    @Override
+    @Transactional(readOnly = true)
+    public Collection<PetType> findPetAge() throws DataAccessException {
+        return petRepository.findPetAge();
+    }
 
 	@Override
 	@Transactional(readOnly = true)

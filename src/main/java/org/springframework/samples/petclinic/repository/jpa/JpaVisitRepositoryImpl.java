@@ -47,6 +47,7 @@ public class JpaVisitRepositoryImpl implements VisitRepository {
     private EntityManager em;
 
 
+    //añadir nueva visita
     @Override
     public void save(Visit visit) {
         if (visit.getId() == null) {
@@ -64,7 +65,7 @@ public class JpaVisitRepositoryImpl implements VisitRepository {
         query.setParameter("id", petId);
         return query.getResultList();
     }
-    
+
 	@Override
 	public Visit findById(int id) throws DataAccessException {
 		return this.em.find(Visit.class, id);
@@ -75,6 +76,12 @@ public class JpaVisitRepositoryImpl implements VisitRepository {
 	public Collection<Visit> findAll() throws DataAccessException {
         return this.em.createQuery("SELECT v FROM Visit v").getResultList();
 	}
+
+    //Devolvemos las 4 últimas visitas más recientes.
+    @Override
+    public Collection<Visit> find4() throws DataAccessException {
+        return this.em.createQuery("SELECT * FROM visit order by visit_date desc limit 4").getResultList();
+    }
 
 	@Override
 	public void delete(Visit visit) throws DataAccessException {
