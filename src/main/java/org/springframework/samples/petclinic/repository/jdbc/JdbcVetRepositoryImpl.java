@@ -137,10 +137,18 @@ public class JdbcVetRepositoryImpl implements VetRepository {
 		return vet;
 	}
 
+    @Override
+    public Vet findVetByLastName(String lastName) throws DataAccessException {
+        return null;
+    }
+
+    @Override
+    public Vet findVetByFirstNameLastName(String firstName, String lastName) throws DataAccessException {
+        return null;
+    }
 
 
-
-	@Override
+    @Override
 	public void save(Vet vet) throws DataAccessException {
 		BeanPropertySqlParameterSource parameterSource = new BeanPropertySqlParameterSource(vet);
 		if (vet.isNew()) {

@@ -76,7 +76,7 @@ public class JpaVetRepositoryImpl implements VetRepository {
         query.setParameter("lastName", lastName + "%");
         return query.getResultList();
     }
-
+// //    Lista Vets filtrados por first_name y lastName
     public List findVetByFirstNameLastName (String firstName,String lastName) {
 
         Query query = this.em.createQuery("SELECT first_name, last_name FROM Vets");

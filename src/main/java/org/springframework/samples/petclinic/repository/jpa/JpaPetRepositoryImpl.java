@@ -78,10 +78,10 @@ public class JpaPetRepositoryImpl implements PetRepository {
 		return this.em.createQuery("SELECT pet FROM Pet pet").getResultList();
 	}
 
-    @Override
+  /*  @Override
     public Collection<Pet> findAll() throws DataAccessException {
         return this.em.createQuery("SELECT pet FROM Pet pet").getResultList();
-    }
+    }*/
 
 
 	@Override

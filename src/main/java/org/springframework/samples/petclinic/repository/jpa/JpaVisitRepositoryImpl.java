@@ -79,7 +79,7 @@ public class JpaVisitRepositoryImpl implements VisitRepository {
 	}
 
     //Devolvemos las 4 últimas visitas más recientes.
-    @Override
+
     public Collection<Visit> find4() throws DataAccessException {
         return this.em.createQuery("SELECT * FROM visit order by visit_date desc limit 4").getResultList();
     }
